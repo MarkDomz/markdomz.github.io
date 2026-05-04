@@ -18,5 +18,5 @@ export const CursorGlow = memo(function CursorGlow() {
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
-  return <div ref={ref} className="pointer-events-none fixed inset-0 z-50 cursor-glow" aria-hidden="true" />;
+  return <div ref={ref} className="pointer-events-none fixed inset-0 z-50 cursor-glow hidden md:block" aria-hidden="true" />;
 });

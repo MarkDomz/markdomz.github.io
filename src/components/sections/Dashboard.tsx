@@ -58,7 +58,7 @@ function ProjectPreview({ project, compact = false }: { project: Project; compac
   if (project.cover) {
     return (
       <div className={`relative overflow-hidden rounded-xl border border-white/10 bg-[#0B1220] ${compact ? "h-28" : "h-64"}`}>
-        <img src={project.cover} alt={`${project.title} preview`} className="h-full w-full object-contain" />
+        <img src={project.cover} alt={`${project.title} preview`} className="h-full w-full object-contain" loading="lazy" />
         {project.video && (
           <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full bg-black/70 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-md">
             <Play size={13} /> Video demo
@@ -71,7 +71,7 @@ function ProjectPreview({ project, compact = false }: { project: Project; compac
   if (project.id === "edusched") {
     return (
       <div className={`overflow-hidden rounded-xl border border-white/10 bg-[#0B1220] ${compact ? "h-28" : "h-64"}`}>
-        <img src="/portfolio-reference.png" alt="EduSched dashboard reference" className="h-full w-full object-contain" />
+        <img src="/portfolio-reference.png" alt="EduSched dashboard reference" className="h-full w-full object-contain" loading="lazy" />
       </div>
     );
   }
@@ -314,8 +314,8 @@ export default function Dashboard() {
           <motion.div className="absolute inset-0 rounded-full border border-blue-500/20" animate={{ rotate: 360 }} transition={{ duration: 24, repeat: Infinity, ease: "linear" }} />
           <motion.div className="absolute inset-6 rounded-full border-2 border-blue-500/80 shadow-glow" animate={{ scale: [1, 1.05, 1], opacity: [0.75, 1, 0.75] }} transition={{ duration: 3, repeat: Infinity }} />
           <motion.div className="absolute inset-12 rounded-full bg-cyanGlow/20 blur-2xl" animate={{ scale: [0.9, 1.12, 0.9] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-          <motion.div className="h-44 w-44 overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-blue-500/20 to-violet-600/20 shadow-glow" initial={{ opacity: 0, scale: 0.85, y: 20 }} animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }} transition={{ opacity: { duration: 0.8 }, scale: { duration: 0.8 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}>
-            <img src="/profile/mark-domz.jpg" alt="Mark Domz profile" className="h-full w-full object-cover object-[50%_22%]" />
+          <motion.div className="h-44 w-44 overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-blue-500/20 to-violet-600/20 shadow-glow transform-gpu" initial={{ opacity: 0, scale: 0.85, y: 20 }} animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }} transition={{ opacity: { duration: 0.8 }, scale: { duration: 0.8 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}>
+            <img src="/profile/mark-domz.jpg" alt="Mark Domz profile" className="h-full w-full object-cover object-[50%_22%]" loading="eager" />
           </motion.div>
         </div>
       </motion.section>
@@ -324,9 +324,9 @@ export default function Dashboard() {
         id="projects"
         initial={{ opacity: 0, y: 48 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.12 }}
+        viewport={{ once: true, amount: 0.12 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur-2xl"
+        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur-lg transform-gpu will-change-transform"
       >
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
@@ -363,9 +363,9 @@ export default function Dashboard() {
         id="skills"
         initial={{ opacity: 0, y: 48 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur-2xl"
+        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur-lg transform-gpu will-change-transform"
       >
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyanGlow">Technical Arsenal</p>
@@ -377,7 +377,7 @@ export default function Dashboard() {
               key={skill.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.02 }}
               className="group flex flex-col items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-5 text-center transition hover:border-blue-500/30"
@@ -398,9 +398,9 @@ export default function Dashboard() {
         id="about"
         initial={{ opacity: 0, y: 48 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur-2xl"
+        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur-lg transform-gpu will-change-transform"
       >
         <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr]">
           <div>
@@ -440,9 +440,9 @@ export default function Dashboard() {
         id="contact"
         initial={{ opacity: 0, y: 48 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur-2xl"
+        className="mx-auto w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur-lg transform-gpu will-change-transform"
       >
         <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
           <div>
@@ -474,7 +474,7 @@ export default function Dashboard() {
         </div>
       </motion.section>
 
-      <footer className="mt-12 border-t border-white/5 bg-[#07101D]/40 py-16 backdrop-blur-2xl">
+      <footer className="mt-12 border-t border-white/5 bg-[#07101D]/40 py-16 backdrop-blur-lg transform-gpu will-change-transform">
         <div className="mx-auto max-w-7xl px-8">
           <div className="flex flex-col items-center justify-between gap-10 md:flex-row">
             <div className="flex items-center gap-4">

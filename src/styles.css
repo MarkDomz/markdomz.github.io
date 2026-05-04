@@ -148,7 +148,7 @@ body {
 /* ── Backdrop blur ── */
 .light-theme .backdrop-blur-xl,
 .light-theme .backdrop-blur-2xl {
-  backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
 }
 
 * {
