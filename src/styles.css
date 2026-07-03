@@ -93,11 +93,11 @@ body {
 
 /* cyanGlow accent → indigo in light mode */
 .light-theme .text-cyanGlow {
-  color: #4F46E5 !important;
+  color: #00c96a !important;
 }
 
 .light-theme .hover\:text-cyanGlow:hover {
-  color: #4F46E5 !important;
+  color: #00c96a !important;
 }
 
 .light-theme .border-white\/\[0\.04\] {
@@ -160,11 +160,11 @@ section[id] {
 }
 
 ::selection {
-  background: rgba(56, 213, 255, 0.3);
+  background: rgba(0, 255, 136, 0.3);
 }
 
 .cursor-glow {
-  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(56, 213, 255, 0.12), transparent 42%);
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(0, 255, 136, 0.12), transparent 42%);
 }
 
 .form-field {
@@ -183,9 +183,9 @@ section[id] {
 }
 
 .form-field:focus {
-  border-color: rgba(56, 213, 255, 0.68);
+  border-color: rgba(0, 255, 136, 0.68);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 4px rgba(56, 213, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.1);
 }
 
 .light-theme .form-field {
@@ -223,12 +223,12 @@ section[id] {
   width: 2rem;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(90deg, #00FF88, #00c96a);
 }
 
 .section-title::after {
   content: "+";
-  color: #6d7cff;
+  color: #00FF88;
   font-size: 0.95rem;
 }
 
@@ -239,7 +239,7 @@ section[id] {
 
 .modal-scroll:hover,
 .modal-scroll:focus-within {
-  scrollbar-color: rgba(96, 165, 250, 0.55) rgba(255, 255, 255, 0.06);
+  scrollbar-color: rgba(0, 255, 136, 0.55) rgba(255, 255, 255, 0.06);
 }
 
 .modal-scroll::-webkit-scrollbar {
@@ -258,7 +258,7 @@ section[id] {
 
 .modal-scroll:hover::-webkit-scrollbar-thumb,
 .modal-scroll:focus-within::-webkit-scrollbar-thumb {
-  background: rgba(96, 165, 250, 0.5);
+  background: rgba(0, 255, 136, 0.5);
   border: 2px solid rgba(11, 18, 32, 0.92);
 }
 

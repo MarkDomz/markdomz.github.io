@@ -7,11 +7,11 @@ export default {
       colors: {
         ink: "#0B0B0F",
         panel: "rgba(255,255,255,0.06)",
-        cyanGlow: "#38D5FF",
+        cyanGlow: "#00FF88",
         violetGlow: "#8B5CF6",
       },
       boxShadow: {
-        glow: "0 0 45px rgba(56,213,255,0.18)",
+        glow: "0 0 45px rgba(0,255,136,0.18)",
         violet: "0 0 55px rgba(139,92,246,0.16)",
       },
       backgroundImage: {
