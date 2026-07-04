@@ -31,10 +31,65 @@ export function Terminal() {
     let output = "";
     switch (trimmed.toLowerCase()) {
       case "help":
-        output = "Available commands:\n  help    - Show this help message\n  about   - Info about this system\n  clear   - Clear terminal output\n  echo    - Repeat your message";
+        output = `Available commands:
+  help      - Show this help message
+  about     - Info about this system
+  skills    - List technical skills
+  projects  - View recent projects
+  contact   - Get contact info
+  whoami    - Current user info
+  date      - Show system date
+  ping      - Ping the server
+  clear     - Clear terminal output
+  echo      - Repeat your message`;
         break;
       case "about":
         output = "Interactive Terminal v1.0.0\nReady for operation.";
+        break;
+      case "skills":
+        output = `[Technical Arsenal]
+> Frontend: React, Next.js, TypeScript, Tailwind CSS
+> Backend: Node.js, C#, .NET 8, Python
+> Database: MySQL, PostgreSQL
+> Other: Electron, Git, GitHub, VS Code`;
+        break;
+      case "projects":
+        output = `[System Portfolio]
+1. IMPMS - Intellectual Property Management System (Web & Desktop)
+2. EduSched - Smart Scheduling & Planning System
+3. OJT Connect - Internship Management Platform
+Type 'contact' to discuss these projects!`;
+        break;
+      case "contact":
+        output = `[Transmission]
+Initiating secure connection...
+Email: markdomz14@gmail.com
+Location: Philippines
+> Feel free to use the contact form on the dashboard for direct messaging.`;
+        break;
+      case "whoami":
+        output = `visitor_0x${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}
+Access Level: GUEST
+Location: EARTH_REGION`;
+        break;
+      case "date":
+        output = new Date().toString();
+        break;
+      case "ping":
+        output = `Pinging markdomz.github.io [192.30.252.153] with 32 bytes of data:
+Reply from 192.30.252.153: bytes=32 time=${Math.floor(Math.random() * 20) + 10}ms TTL=54
+Reply from 192.30.252.153: bytes=32 time=${Math.floor(Math.random() * 20) + 10}ms TTL=54
+Ping statistics:
+    Packets: Sent = 2, Received = 2, Lost = 0 (0% loss)`;
+        break;
+      case "sudo":
+        output = `markdomz is not in the sudoers file. This incident will be reported.`;
+        break;
+      case "matrix":
+        output = `Wake up, Neo...
+The Matrix has you...
+Follow the white rabbit.
+Knock, knock, Neo.`;
         break;
       case "clear":
         setHistory([]);
