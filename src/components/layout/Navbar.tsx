@@ -37,7 +37,7 @@ export function Navbar() {
   return (
     <header className={`fixed left-0 right-0 top-0 z-40 transition-all duration-300 transform-gpu ${solid ? "bg-ink/78 shadow-glow backdrop-blur-md" : "bg-transparent"}`}>
       <nav className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-4 sm:px-8">
-        <a href="#home" onClick={scrollToSection("home")} className="flex items-center gap-3 text-sm font-bold text-white"><span className="text-2xl font-black text-blue-500">MD</span> Mark Domz</a>
+        <a href="#home" onClick={scrollToSection("home")} className="flex items-center gap-3 text-xl font-bold text-neonGreen animate-blink tracking-wider">&lt;Mark Domz/&gt;</a>
         <div className="hidden items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.055] p-1 backdrop-blur-md md:flex">
           {navItems.map((item) => (
             <a key={item.id} href={`#${item.id}`} onClick={scrollToSection(item.id)} className={`rounded-full px-3 py-2 text-xs font-medium transition sm:px-4 ${active === item.id ? "bg-cyanGlow text-ink" : "text-white/68 hover:text-white"}`}>

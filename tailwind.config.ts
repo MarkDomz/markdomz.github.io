@@ -18,6 +18,14 @@ export default {
       backgroundImage: {
         "noise": "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0)",
       },
+      animation: {
+        blink: "blink 1s step-start infinite",
+      },
+      keyframes: {
+        blink: {
+          "50%": { opacity: "0" },
+        },
+      },
     },
   },
   plugins: [],

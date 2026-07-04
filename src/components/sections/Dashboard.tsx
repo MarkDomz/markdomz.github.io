@@ -524,7 +524,7 @@ export default function Dashboard() {
               <a href="https://github.com" className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/40 transition-all hover:border-cyanGlow/50 hover:text-cyanGlow">
                 <Github size={20} />
               </a>
-              <a href="mailto:markdomz14@gmail.com" className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/40 transition-all hover:border-cyanGlow/50 hover:text-cyanGlow">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=markdomz14@gmail.com" target="_blank" rel="noopener noreferrer" className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/40 transition-all hover:border-cyanGlow/50 hover:text-cyanGlow">
                 <Mail size={20} />
               </a>
             </div>
