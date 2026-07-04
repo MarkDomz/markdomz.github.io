@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Terminal as TerminalIcon, X, ChevronUp, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MatrixRain } from "./MatrixRain";
 
 export function Terminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isMatrixMode, setIsMatrixMode] = useState(false);
   const [history, setHistory] = useState<{ type: "input" | "output"; content: string }[]>([
     { type: "output", content: "System initialized. Type 'help' for commands." }
   ]);
@@ -86,10 +88,16 @@ Ping statistics:
         output = `markdomz is not in the sudoers file. This incident will be reported.`;
         break;
       case "matrix":
-        output = `Wake up, Neo...
+        if (isMatrixMode) {
+          setIsMatrixMode(false);
+          output = `Matrix mode disabled.`;
+        } else {
+          setIsMatrixMode(true);
+          output = `Wake up, Neo...
 The Matrix has you...
 Follow the white rabbit.
 Knock, knock, Neo.`;
+        }
         break;
       case "clear":
         setHistory([]);
@@ -114,6 +122,14 @@ Knock, knock, Neo.`;
 
   return (
     <>
+      <AnimatePresence>
+        {isMatrixMode && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <MatrixRain />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {!isOpen && (
           <motion.button
