@@ -42,6 +42,8 @@ export function Terminal() {
   whoami    - Current user info
   date      - Show system date
   ping      - Ping the server
+  matrix    - Toggle digital rain
+  sudo      - Superuser do
   clear     - Clear terminal output
   echo      - Repeat your message`;
         break;
