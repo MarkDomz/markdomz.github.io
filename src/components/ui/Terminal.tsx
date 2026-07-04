@@ -179,7 +179,7 @@ Knock, knock, Neo.`;
             {/* Body */}
             {!isMinimized && (
               <div className="flex flex-1 flex-col overflow-hidden">
-                <div className="flex-1 overflow-y-auto p-4 modal-scroll">
+                <div className="flex-1 overflow-y-auto p-4 modal-scroll" data-lenis-prevent>
                   {history.map((msg, i) => (
                     <div key={i} className="mb-2 flex flex-col gap-1">
                       {msg.type === "input" ? (
