@@ -292,13 +292,37 @@ export default function Dashboard() {
   const handleSelect = useCallback((project: Project) => setSelected(project), []);
   const featuredProjects = useMemo(() => projects.slice(0, 3), []);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    window.setTimeout(() => {
+
+    const form = new FormData();
+    form.append("access_key", "7e980e7a-487b-4b79-a63c-9e2b55106b37");
+    form.append("name", formData.name);
+    form.append("email", formData.email);
+    form.append("message", formData.details);
+
+    const object = Object.fromEntries(form);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      }).then((res) => res.json());
+
+      if (res.success) {
+        setFormData({ name: "", email: "", details: "" });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
       setLoading(false);
-      setFormData({ name: "", email: "", details: "" });
-    }, 900);
+    }
   };
 
   return (
@@ -463,10 +487,10 @@ export default function Dashboard() {
           </div>
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
-              <input type="text" placeholder="Your Name" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
-              <input type="email" placeholder="Email Address" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
+              <input name="name" type="text" placeholder="Your Name" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
+              <input name="email" type="email" placeholder="Email Address" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
             </div>
-            <textarea placeholder="Project details or message..." required rows={6} value={formData.details} onChange={e => setFormData({...formData, details: e.target.value})} className="w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
+            <textarea name="message" placeholder="Project details or message..." required rows={6} value={formData.details} onChange={e => setFormData({...formData, details: e.target.value})} className="w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
             <button disabled={loading} type="submit" className="flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-4 font-bold text-white transition hover:bg-blue-500 disabled:opacity-50 shadow-glow">
               {loading ? "Transmitting..." : <><Send size={18} /> Send Message</>}
             </button>
