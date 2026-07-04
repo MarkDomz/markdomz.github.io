@@ -1,7 +1,21 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme and observe changes
+    const checkTheme = () => {
+      setIsLightMode(document.documentElement.classList.contains("light-theme"));
+    };
+    
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -36,16 +50,23 @@ export function MatrixRain() {
       if (timestamp - lastDrawTime < interval) return;
       lastDrawTime = timestamp;
 
-      // Dark fading effect to create trails
-      ctx.fillStyle = "rgba(11, 11, 15, 0.1)"; // Matches bg-ink loosely
+      const isLight = document.documentElement.classList.contains("light-theme");
+
+      // Fading effect to create trails
+      ctx.fillStyle = isLight ? "rgba(255, 255, 255, 0.1)" : "rgba(11, 11, 15, 0.1)"; 
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
-        // Randomly make some characters brighter white/green, most normal neon green
+        // Randomly make some characters brighter/darker
         const isBright = Math.random() > 0.95;
-        ctx.fillStyle = isBright ? "#E2FFE8" : "#39FF14"; 
+        
+        if (isLight) {
+          ctx.fillStyle = isBright ? "#064E3B" : "#16A34A"; // Dark forest green for light mode
+        } else {
+          ctx.fillStyle = isBright ? "#E2FFE8" : "#39FF14"; // Neon green for dark mode
+        }
 
         const text = letters[Math.floor(Math.random() * letters.length)];
         const x = i * fontSize;
@@ -73,7 +94,7 @@ export function MatrixRain() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-40 pointer-events-none opacity-40 mix-blend-screen"
+      className={`fixed inset-0 z-40 pointer-events-none opacity-40 ${isLightMode ? "mix-blend-multiply" : "mix-blend-screen"}`}
     />
   );
 }
