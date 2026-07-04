@@ -3,6 +3,7 @@ import { CursorGlow } from "./components/layout/CursorGlow";
 import { Navbar } from "./components/layout/Navbar";
 import { ScrollProgress } from "./components/layout/ScrollProgress";
 import Dashboard from "./components/sections/Dashboard";
+import { Terminal } from "./components/ui/Terminal";
 
 export default function App() {
   useLenis();
@@ -17,6 +18,7 @@ export default function App() {
       <main className="relative z-10">
         <Dashboard />
       </main>
+      <Terminal />
     </div>
   );
 }

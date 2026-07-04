@@ -9,6 +9,7 @@ export default {
         panel: "rgba(255,255,255,0.06)",
         cyanGlow: "#00FF88",
         violetGlow: "#8B5CF6",
+        neonGreen: "#39FF14",
       },
       boxShadow: {
         glow: "0 0 45px rgba(0,255,136,0.18)",
