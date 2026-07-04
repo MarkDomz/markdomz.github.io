@@ -287,6 +287,7 @@ function Modal({ project, onClose }: { project: Project; onClose: () => void }) 
 export default function Dashboard() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", details: "" });
   const featured = projects[0];
   const handleSelect = useCallback((project: Project) => setSelected(project), []);
@@ -317,6 +318,8 @@ export default function Dashboard() {
 
       if (res.success) {
         setFormData({ name: "", email: "", details: "" });
+        setIsSent(true);
+        setTimeout(() => setIsSent(false), 5000);
       }
     } catch (error) {
       console.error(error);
@@ -491,8 +494,13 @@ export default function Dashboard() {
               <input name="email" type="email" placeholder="Email Address" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
             </div>
             <textarea name="message" placeholder="Project details or message..." required rows={6} value={formData.details} onChange={e => setFormData({...formData, details: e.target.value})} className="w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/50" />
-            <button disabled={loading} type="submit" className="flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-4 font-bold text-white transition hover:bg-blue-500 disabled:opacity-50 shadow-glow">
-              {loading ? "Transmitting..." : <><Send size={18} /> Send Message</>}
+            {isSent && (
+              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="rounded-xl bg-green-500/10 border border-green-500/20 px-4 py-3 text-green-400 text-sm text-center font-medium">
+                Message received successfully. I'll get back to you shortly!
+              </motion.div>
+            )}
+            <button disabled={loading || isSent} type="submit" className="flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-4 font-bold text-white transition hover:bg-blue-500 disabled:opacity-50 shadow-glow">
+              {loading ? "Transmitting..." : isSent ? "Sent!" : <><Send size={18} /> Send Message</>}
             </button>
           </form>
         </div>

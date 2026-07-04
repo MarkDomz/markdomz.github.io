@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from "lucide-react";
+import { Terminal as TerminalIcon, X, ChevronUp, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Terminal() {
@@ -95,7 +95,7 @@ export function Terminal() {
               </div>
               <div className="flex items-center gap-3 text-neonGreen/70">
                 <button onClick={(e) => { e.stopPropagation(); setIsMinimized(!isMinimized); }} className="hover:text-neonGreen transition-colors">
-                  {isMinimized ? <Maximize2 size={16} /> : <Minimize2 size={16} />}
+                  {isMinimized ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </button>
                 <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="hover:text-neonGreen transition-colors">
                   <X size={18} />
